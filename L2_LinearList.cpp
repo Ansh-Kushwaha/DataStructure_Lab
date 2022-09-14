@@ -17,10 +17,10 @@ class LinkedList{
     }
     
     bool isEmpty(){
-		if(size == 0)
-			return true;
-		else
-			return false;
+	if(size == 0)
+		return true;
+	else
+		return false;
 	}
 	
 	bool isFull(){
@@ -30,7 +30,7 @@ class LinkedList{
 			return false;
 	}
 	
-	int find(int k){
+    int find(int k){
 		if(k>=0 && k<size)
 			return elements[k];
 		else
