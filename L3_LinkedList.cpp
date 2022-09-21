@@ -102,7 +102,25 @@ class LinkedList{
 	    return -1;
 	}
 	
-	//int insert(node* p, int pos){}
+	node*p insert(node* p, int pos, int x){
+	    int len = length(p);
+	    if(pos<1 || pos>len+1){
+	        cout << "Can't insert at specified position" << endl;
+	        return p;
+	    }
+	    else{
+	        if(pos == 1){
+	            node* tmp = new node();
+	            tmp->link = p;
+	            tmp->data = x;
+	            p = tmp;
+	            return p;
+	        }
+	        else{
+	            for(int i=2)
+	        }
+	    }
+	}
 	
 	void output(node* p){
 	    while(p != NULL){
