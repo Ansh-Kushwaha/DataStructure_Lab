@@ -6,8 +6,7 @@ struct node{
 	node* link;
 };
 
-class LinkedList{
-	public:	
+typedef struct LinkedList{	
 	int isEmpty(node* p){
 		if(p == NULL)
 			return 1;
@@ -162,8 +161,13 @@ class LinkedList{
 			curr = next;
 		}
 		p = last;
+		if(p == NULL){
+			cout << "List doesn't exist." << endl;
+			return p;
+		}
 		return p;
 	}
+	
 	void output(node* p){
 	    while(p != NULL){
 	        cout << p->data << " ";
@@ -171,18 +175,17 @@ class LinkedList{
 	    }
 	    cout << endl;
 	}
-};
+} ll;
 
 
 int main(){
     node* start = NULL;
-	LinkedList ll;
-	start =ll.create(start, 5);
-	// start = ll.create(start, 5);
+	ll l1;
+	start = l1.create(start, 5);
 	// cout << ll.find(start, 1) << endl;
 	// cout << ll.search(start, 5) << endl;
-	ll.output(start);
-	start = ll.reverse(start);
-	ll.output(start);
+	l1.output(start);
+	start = l1.reverse(start);
+	l1.output(start);
 	return 0;
 }
