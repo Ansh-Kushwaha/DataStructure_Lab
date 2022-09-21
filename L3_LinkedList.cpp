@@ -185,6 +185,7 @@ int main(){
 	cout << l1.find(start, 1) << endl;
 	cout << l1.search(start, 5) << endl;
 	start = l1.insert(start, 2, 7);
+	l1.output(start);
 	int x = 0;
 	start = l1.del(start, 4, x);
 	cout << x << endl;
