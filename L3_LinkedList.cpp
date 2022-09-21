@@ -181,9 +181,13 @@ typedef struct LinkedList{
 int main(){
     node* start = NULL;
 	ll l1;
-	start = l1.create(start, 5);
-	// cout << l1.find(start, 1) << endl;
-	// cout << l1.search(start, 5) << endl;
+	start =l1.create(start, 5);
+	cout << l1.find(start, 1) << endl;
+	cout << l1.search(start, 5) << endl;
+	start = l1.insert(start, 2, 7);
+	int x = 0;
+	start = l1.del(start, 4, x);
+	cout << x << endl;
 	l1.output(start);
 	start = l1.reverse(start);
 	l1.output(start);
