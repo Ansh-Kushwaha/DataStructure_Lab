@@ -7,14 +7,7 @@ struct node{
 };
 
 class LinkedList{
-	int size;
-	node* head;	
-	public:
-	LinkedList(node* h, int s){
-	    head = h;
-	    size = s;
-	}
-	
+	public:	
 	int isEmpty(node* p){
 		if(p == NULL)
 			return 1;
@@ -24,13 +17,12 @@ class LinkedList{
 	
 	int isFull(node* p){
 		node *tmp = new node();
-		p = tmp->link;
-		if(p != NULL){
+		if(tmp != NULL){
 			delete tmp;
 			return 0;
 		}
 		else
-			return 0;
+			return 1;
 	}
 
 	node* create(node* p, int n){
@@ -102,7 +94,7 @@ class LinkedList{
 	    return -1;
 	}
 	
-	node*p insert(node* p, int pos, int x){
+	node* insert(node* p, int pos, int x){
 	    int len = length(p);
 	    if(pos<1 || pos>len+1){
 	        cout << "Can't insert at specified position" << endl;
@@ -117,11 +109,61 @@ class LinkedList{
 	            return p;
 	        }
 	        else{
-	            for(int i=2)
-	        }
+				node* q = p;
+	            for(int i=2; i<=pos-1; i++)
+					q = q->link;
+				node *tmp = new node;
+				tmp->data = x;
+				tmp->link = q->link;
+				q->link = tmp;
+				return p;
+			}
 	    }
 	}
+
+	node* del(node* p, int pos, int &x){
+		int len = length(p);
+		if(isEmpty(p)){
+			cout << "Already empty" << endl;
+			return p;
+		}
+		else if(pos <1 || pos>len){
+			cout << "Invalid position" << endl;
+			return p;
+		}
+		else if(pos == 1){
+			node *q = p;
+			x = q->data;
+			p = q->link;
+			delete q;
+			return p;
+		}
+		else{
+			node* tmp = p;
+			node* q;
+			for(int i=1; i<pos-1; i++)
+				p = p->link;
+			q = p->link;
+			p->link = q->link;
+			x = q->data;
+			delete q;
+			return tmp;
+		}
+	}
 	
+	node* reverse(node *p){
+		node *last, *curr, *next;
+		curr = p;
+		last = NULL;
+		while(curr != NULL){
+			next = curr->link;
+			curr->link = last;
+			last = curr;
+			curr = next;
+		}
+		p = last;
+		return p;
+	}
 	void output(node* p){
 	    while(p != NULL){
 	        cout << p->data << " ";
@@ -134,11 +176,13 @@ class LinkedList{
 
 int main(){
     node* start = NULL;
-	LinkedList ll(start, 5);
-	start = ll.create(start, 5);
-	cout << ll.find(start, 1) << endl;
-	cout << ll.search(start, 5) << endl;
+	LinkedList ll;
+	start =ll.create(start, 5);
+	// start = ll.create(start, 5);
+	// cout << ll.find(start, 1) << endl;
+	// cout << ll.search(start, 5) << endl;
 	ll.output(start);
-	
+	start = ll.reverse(start);
+	ll.output(start);
 	return 0;
 }
