@@ -182,8 +182,8 @@ int main(){
     node* start = NULL;
 	ll l1;
 	start = l1.create(start, 5);
-	// cout << ll.find(start, 1) << endl;
-	// cout << ll.search(start, 5) << endl;
+	// cout << l1.find(start, 1) << endl;
+	// cout << l1.search(start, 5) << endl;
 	l1.output(start);
 	start = l1.reverse(start);
 	l1.output(start);
