@@ -169,6 +169,47 @@ typedef struct CirularLinkedList{
         while(q != last);
         cout << endl;
     }
+    
+    node* del(node *last, int pos, int &x){
+        int l = length(last);
+        if(pos<1 || pos>l){
+            cout << "Invalid Position" << endl;
+            return last;
+        }
+        else{
+            if(pos==1){
+                node *q = last->next;
+                last->next = q->next;
+                x = q->data;
+                delete q;
+                return last;
+            }
+            if(pos==l){
+                node *q = last;
+                x = q->data;
+                node *prev = last->next;
+                while(prev->next != last){
+                    prev = prev->next;
+                }
+                prev->next = last->next;
+                last = prev;
+                delete q;
+                return last;
+            }
+            else{
+                node *prev = last->next;
+                while(pos!=2){
+                    prev = prev->next;
+                    pos--;
+                }
+                node *q = prev->next;
+                x = q->data;
+                prev->next = q->next;
+                delete q;
+                return last;
+            }
+        }
+    }
 }cll;
 
 int main() {
@@ -180,6 +221,10 @@ int main() {
     cout << l1.find(last, 5) << endl;
     cout << l1.search(last, 9) << endl;
     last = l1.insert(last, 5, 99);
+    l1.output(last);
+    int x = 0;
+    last = l1.del(last, 4, x);
+    cout << "deleted " << x << endl;
     l1.output(last);
     return 0;
 }
