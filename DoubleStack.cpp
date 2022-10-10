@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-#define SIZE 10
+#define SIZE 100
 int stack[SIZE];
 int top1 = -1;
 int top2 = 10;
@@ -36,14 +36,92 @@ bool isFull(){
 		return false;
 }
 
-bool isEmpty(){
+bool isEmpty(int n){
 	if(top1 == -1 && top2 == SIZE)
 		return true;
 	else
 		return false;
 }
-void insert(){
-	
+
+void output(int n){
+    if(n==1){
+        for(int i=top1; i>=0; i--)
+            cout << stack[i] << " ";
+        cout << "\n";
+    }
+    else if(n==2){
+        for(int i=top2; i<SIZE; i++)
+            cout << stack[i] << " ";
+        cout << "\n";
+    }
+    else{
+        cout << "Incorrect stack \n";
+    }
+
+}
+
+int top(int n){
+    if(n==1){
+        return stack[top1];
+    }
+    else if(n==2){
+        return stack[top2];
+    }
+    else{
+        cout << "Incorrect stack \n";
+        return -9999;
+    }
+}
+void push(int n, int x){
+    if(n==1){
+        if(isFull()){
+            cout << "Overflow \n";
+            return;
+        }
+        else{
+            top1++;
+            stack[top1] = x;
+        }
+    }
+    else if(n==2){
+        if(isEmpty(n)){
+            cout << "Overflow \n";
+            return;
+        }
+        else{
+            top2--;
+            stack[top2] = x;
+        }
+    }
+    else{
+        cout << "Incorrect stack \n";
+    }
+}
+
+void pop(int n, int &x){
+    if(n==1){
+        if(isEmpty(n)){
+            cout << "Underflow \n";
+            return;
+        }
+        else{
+            x = stack[top1];
+            top1--;
+        }
+    }
+    else if(n==2){
+        if(isEmpty(n)){
+            cout << "Underflow \n";
+            return;
+        }
+        else{
+            x = stack[top2];
+            top2++;
+        }
+    }
+    else{
+        cout << "Incorrect stack \n";
+    }
 }
 int main() {
 	int choice, l, r, n, x;
@@ -67,10 +145,12 @@ int main() {
 				create(l, r);
 				break;
 			case 2:
-				if(isEmpty())
-					cout << "Stacks are empty.\n";
+            	cout << "Enter the Stack no. (1/2) : ";
+                cin >> n;
+				if(isEmpty(n))
+					cout << "Stack is empty.\n";
 				else
-					cout << "Stacks are not empty.\n";
+					cout << "Stack is not empty.\n";
 				break;
 			case 3:
 				if(isFull())
@@ -79,12 +159,28 @@ int main() {
 					cout << "Stack not Full.\n";
 				break;
 			case 4:
-				cout << "Enter 
-				output();
+				cout << "Enter the Stack no. you want to view (1/2) : ";
+                cin >> n;
+				output(n);
 				break;
-			//case 5:
-			//case 6:
-			//case 7:
+			case 5:
+				cout << "Enter the Stack no. (1/2) : ";
+                cin >> n;
+				cout << top(n) << "\n";
+				break;                
+			case 6:
+                cout << "Enter the Stack no. (1/2) : ";
+                cin >> n;
+				pop(n, x);
+                cout << "Popped " << x << endl;
+				break;           
+			case 7:
+                cout << "Enter the Stack no. (1/2) : ";
+                cin >> n;
+				cout << "Enter element you wan't to push : ";
+                cin >> x;
+                push(n, x);
+				break;           
 			case 8:
 				c = false;
 				break;
