@@ -1,13 +1,13 @@
 #include <iostream>
 using namespace std;
 
-#define SIZE 100
-int stack[SIZE];
+#define MAXSIZE 100
+int stack[MAXSIZE];
 int top1 = -1;
-int top2 = 10;
+int top2 = MAXSIZE;
 
 void create(int l, int r){
-	if(l+r > SIZE){
+	if(l+r > MAXSIZE){
 		cout << "Can't create \n";
 		return; 
 	}
@@ -37,10 +37,17 @@ bool isFull(){
 }
 
 bool isEmpty(int n){
-	if(top1 == -1 && top2 == SIZE)
-		return true;
-	else
-		return false;
+	if(n==1){
+        if(top1 == -1)
+            return true;
+        else
+            return false;
+    }
+    else{
+        if(top2 == MAXSIZE)
+            return true;
+        else
+            return false;
 }
 
 void output(int n){
@@ -50,7 +57,7 @@ void output(int n){
         cout << "\n";
     }
     else if(n==2){
-        for(int i=top2; i<SIZE; i++)
+        for(int i=top2; i<MAXSIZE; i++)
             cout << stack[i] << " ";
         cout << "\n";
     }
@@ -147,7 +154,9 @@ int main() {
 			case 2:
             	cout << "Enter the Stack no. (1/2) : ";
                 cin >> n;
-				if(isEmpty(n))
+                if(!(n==1 || n==2))
+                    cout << "Incorrect stack.\n";
+				else if(isEmpty(n))
 					cout << "Stack is empty.\n";
 				else
 					cout << "Stack is not empty.\n";
