@@ -118,6 +118,11 @@ class Queue {
         }
     }
     
+    int dequeue(){
+        int x = s1.top();
+        s1.pop();
+        return x;
+    }
     void output(){
         s1.output();
     }
@@ -128,4 +133,6 @@ int main(){
     q.output();
     q.enqueue(7);
     q.output();
+    Stack s(5);
+    s.output();
 }
