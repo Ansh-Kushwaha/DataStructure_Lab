@@ -133,6 +133,8 @@ int main(){
     q.output();
     q.enqueue(7);
     q.output();
+    cout << "Deleted : " << q.dequeue() << endl;
+    q.output();
     Stack s(5);
     s.output();
 }
