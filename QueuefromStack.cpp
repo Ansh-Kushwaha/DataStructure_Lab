@@ -63,13 +63,27 @@ class Stack {
         else
             return stack[TOP];
     }
+    
+    void output(){
+        for(int i=TOP; i>=0; i--)
+            cout << stack[i] << " ";
+        cout << endl;
+    }
 };
 
 class Queue {
     Stack s1, s2;
+    int front;
+    int rear;
     
     public:
+    Queue(){
+        front = -1;
+        rear = -1;
+    }
     Queue(int n){
+        front = -1;
+        rear = -1;
         int x;
         for(int i=0; i<n; i++){
             cout << "Enter data of " << i+1 << " element : ";
@@ -92,10 +106,32 @@ class Queue {
             return false;
     }
     
-    void enqueue(){
-        
+    void enqueue(int x){
+        if(isFull()){
+            cout << "Overflow!\n";
+            return;
+        }
+        if(isEmpty()){
+            front = rear = 0;
+            s1.push(x);
+        }
+        else{
+            front = 0;
+            while(!s1.isEmpty())
+                s2.push(s1.pop());
+            s1.push(x);
+            rear++;
+            while(!s2.isEmpty()){
+                s1.push(s2.pop());
+                rear++;
+            }
+        }
+    }
+    
+    void output(){
+        s1.output();
     }
 };
 int main(){
-    Stack s1(5);
+    Queue q(5);
 }
