@@ -62,3 +62,38 @@ int length(node *first){
     }
     return l;
 }
+
+int find(node *first, int pos){
+    if(first == NULL){
+        cout << "List is empty.\n";
+        return -12345;
+    }
+    
+    if(pos<1 || pos>length(first)){
+        cout << "Invalid Position\n";
+        return -12345;
+    }
+    
+    for(int i=1; i<pos; i++)
+        first = first->next;
+    return first->data;
+}
+
+int search(node *first, int x){
+    if(first == NULL){
+        cout << "List is empty.\n";
+        return -1;
+    }
+    int pos = 1;
+    while(first != NULL){
+        if(first->data == x)
+            return pos;
+        else{
+            pos++;
+            first = first->next;
+        }
+    }
+    return -1;
+}
+
+int insert(node)
