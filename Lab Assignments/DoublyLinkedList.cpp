@@ -96,4 +96,52 @@ int search(node *first, int x){
     return -1;
 }
 
-int insert(node)
+node* insert(node *first, int pos, int x){
+    int l = length(first);
+    if(pos<1 || pos >(l+1)){
+        cout << "Invalid position\n";
+        return first;
+    }
+    if(l==0 && pos==1){
+        node *tmp = new node;
+        tmp->prev = tmp->next = NULL;
+        tmp->data = x;
+        first = tmp;
+        return first;
+    }
+    else if(pos==1){
+        node *tmp = new node;
+        tmp->prev = NULL;
+        tmp->next = first;
+        tmp->data = x;
+        first->prev = tmp;
+        first = tmp;
+        return first;
+    }
+    else if(pos<=l){
+        node *q = first, *r;
+        for(int i=1; i<pos-1; i++)
+            q = q->next;
+        node *tmp = new node;
+        tmp->prev = q;
+        tmp->next = q->next;
+        tmp->data = x;
+        r = q->next;
+        q->next = tmp;
+        r->prev = tmp;
+        return first;
+    }
+    else{
+        node *q = first;
+        do{
+            q = q->next;
+        }
+        while(q->next != NULL);
+        node *tmp = new node;
+        tmp->next = NULL;
+        tmp->prev = q;
+        tmp->data = x;
+        q->next = tmp;
+        return first;
+    }
+}
