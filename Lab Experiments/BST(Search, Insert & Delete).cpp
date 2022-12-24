@@ -24,24 +24,24 @@ void inorder(node *root) {
 }
 
 node* insert(node* root, int key) {
-	if(!root) {
+	if(root == NULL) {
 		return newNode(key);
 	}
+	if(key < root->key)
+		root->left = insert(root->left, key);
 	else if(key > root->key)
-		root->right = newNode(key);
-	else if(key < root->key)
-		root->left = newNode(key);
+		root->right = insert(root->right, key);
 	return root;
 }
 
 node* search(node* root, int key) {
-    if (root == NULL || root->key == key)
-       return root;
-    
-    if (root->key < key)
-       return search(root->right, key);
+	if (root == NULL || root->key == key)
+	   return root;
+	
+	if (root->key < key)
+	   return search(root->right, key);
  
-    return search(root->left, key);
+	return search(root->left, key);
 }
 
 node* minValueNode(node *root) {
