@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <stack>
 using namespace std;
 
 vector<vector<int> > adj;
@@ -10,14 +11,26 @@ void addEdge(int x, int y) {
 }
 
 void DFS(int start, vector<bool>&visited) {
-	cout << start << " ";
 	//set current node as visited
-	visited[start] = true;
-	for(int i=0; i<adj[start].size(); i++) {
-		//If some node is adjacent to current node & is unvisited
-		if(adj[start][i] == 1 && !visited[i]) {
-			DFS(i, visited);
+	// for(int i=0; i<adj[start].size(); i++) {
+	// 	//If some node is adjacent to current node & is unvisited
+	// 	if(adj[start][i] == 1 && !visited[i]) {
+	// 		DFS(i, visited);
+	// 	}
+	// }
+	stack<int> st;
+	st.push(start);
+	while(!st.empty()) {
+		int vis = st.top();
+		st.pop();
+		if(!visited[vis]) {	
+			cout << vis << " ";
+			visited[vis] = true;
 		}
+		
+		for(int i = 0; i < adj[vis].size(); i++)
+			if(adj[vis][i] == 1 && !visited[i])
+				st.push(i);
 	}
 }
 

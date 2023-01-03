@@ -20,7 +20,7 @@ void bfs(int start) {
 		cout << vis << " ";
 		q.erase(q.begin());
 		for(int i=0; i<adj[vis].size(); i++) {
-			if(adj[vis][i]==1 && !visited[i]) {
+			if(adj[vis][i] == 1 && !visited[i]) {
 				q.push_back(i);
 				visited[i] = true;
 			}
