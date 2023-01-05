@@ -3,7 +3,7 @@
 #define MAXSIZE 100
 using namespace std;
 
-template <class T> class Stack{
+template <typename T> class Stack{
 	int top;
 	T stack[MAXSIZE];
 	
